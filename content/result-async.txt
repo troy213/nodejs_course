@@ -1,0 +1,3 @@
+Here the first text
+ result, and here the second text
+ result asyncronously.
