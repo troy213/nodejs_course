@@ -1,3 +1,4 @@
-var arr = ["john", "sarah", "peter", "jane", "foo", "bar"];
+var arr = ['john', 'sarah', 'peter', 'jane', 'foo', 'bar']
 
-module.exports = arr;
+module.exports = arr
+// exporting module

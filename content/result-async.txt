@@ -1,3 +1,2 @@
-Here the first text
- result, and here the second text
- result asyncronously.
+this is first text, second text result 
+this is first text, second text result 
