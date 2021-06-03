@@ -1,4 +1,5 @@
 const { readFile, writeFile } = require('fs').promises
+// const { readFile, writeFile } = require('fs')
 
 // alternate way to promise a function
 // const util = require('util')
@@ -15,6 +16,7 @@ const start = async () => {
       { flag: 'a' }
     )
     console.log(first, second)
+    console.log(await readFile('./content/result-async.txt', 'utf8'))
   } catch (error) {
     console.log(error)
   }
@@ -37,16 +39,3 @@ start()
 // getText('../content/first.txt')
 //   .then((result) => console.log(result))
 //   .catch((err) => console.log(err))
-
-// const writeText = (path, data) => {
-//   writeFile(
-//     path,
-//     `here the ${data} written asyncronously \n`,
-//     { flag: 'a' },
-//     (err, result) => {
-//       if (err) {
-//         return
-//       }
-//     }
-//   )
-// }
