@@ -1,26 +1,6 @@
 const express = require('express')
 const path = require('path')
 const app = express()
-const product = require('./data/product')
-
-app.use(express.static('./public'))
-
-// parse from data
-app.use(express.urlencoded({ extended: false }))
-// parse json
-app.use(express.json())
-
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './index.html'))
-})
-
-app.get('/api', (req, res) => {
-  res.json(product)
-})
-
-const express = require('express')
-const path = require('path')
-const app = express()
 
 const product = require('./data/product')
 
@@ -106,29 +86,11 @@ app.delete('/api/:id', (req, res) => {
   res.status(200).json({ success: true, data: newProduct })
 })
 
-//40
+//send back 404 status code if the request is unknown
 app.all('*', (req, res) => {
   res.status(404).send('404 Not Found')
 })
 
 app.listen(5000, () => {
   console.log('server is listening on port 5000')
-})
-
-app.post('/api', (req, res) => {
-  console.log(req.body)
-  const name = req.body.name
-  if (name) {
-    res.status(201).send(req.body.name)
-  } else {
-    res.status(401).json({ msg: 'Please Provide Credential' })
-  }
-})
-
-app.all('*', (req, res) => {
-  res.status(404).send(`<h1><a href="/">404 Not Found</a></h1>`)
-})
-
-app.listen(5000, () => {
-  console.log('Server is listening on port 5000')
 })
