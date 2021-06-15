@@ -4,14 +4,69 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Document</title>
 
     <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <div class="container">
-      <h1>Home Page</h1>
-      <p>Welcome to my homepage!</p>
+
+      <!-- <h1>Home Page Without JS</h1>
+      <form action="/api" method="POST">
+        <label for="name">Enter Name</label>
+        <input type="text" name="name" id="name" autocomplete="false" />
+        <button id="submit" type="submit">Submit</button>
+      </form> -->
+
+      <h1>Home Page With JS</h1>
+      <form>
+        <label for="name">Enter Name</label>
+        <input type="text" name="name" id="name" autocomplete="false" />
+        <button id="submit" class="btn btn-success" type="submit">Submit</button>
+      </form>
+      <div id="result"></di>
     </div>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+  <script>
+    const result = document.getElementById('result')
+
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get('/api')
+        console.log(data);
+        const product = data.data.map((value) => {
+          return `${value.name}`
+        })
+        result.innerHTML = product.join(' ')
+      } catch (error) {
+        result.innerHTML = error
+      }
+    }
+
+    fetchData()
+
+    const btn = document.getElementById('submit');
+    const input = document.getElementById('name')
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+
+      try {
+        const { data } = await axios.post('/api', { name: input.value });
+        console.log(data);
+        const product = [...result.innerHTML, data]
+        result.innerHTML = product.join(' ')
+      } catch (error) {
+        console.log(error);
+      }
+      input.value = ''
+    })
+  </script>
 </html>

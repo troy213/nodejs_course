@@ -22,7 +22,10 @@ app.use([express.static('./public'), authorize, logger])
 //   next()
 // }
 
-// app.get('/', logger, (req, res) => {
+// or you can use third party middleware like morgan through
+// NPM installation npm i morgan
+
+// app.get('/', logger, morgan('tiny'), (req, res) => {
 //   res.sendFile(path.resolve(__dirname, './index.html'))
 // })
 
